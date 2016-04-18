@@ -1,0 +1,4 @@
+env_name: default
+hadoop_user: hadoop
+hadoop_distr_prefix: /opt/hadoop
+hadoop_var_prefix: /var/hadoop
