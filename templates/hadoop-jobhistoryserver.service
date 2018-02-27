@@ -1,0 +1,19 @@
+[Unit]
+Description=Hadoop Jobhistoryserver Service
+Documentation=https://github.com/gitinsky/ansible-role-hadoop-jobhistoryserver
+
+[Service]
+LimitNOFILE=65535
+Environment=LC_ALL=en_US.UTF-8
+Environment=LANG=en_US.UTF-8
+Type=forking
+User={{ hadoop_user }}
+Group={{ hadoop_user }}
+PIDFile=/tmp/hadoop-{{ hadoop_user }}-historyserver.pid
+ExecStart={{ hadoop_distr_prefix }}-{{ env_name }}-{{ hadoop_version }}/sbin/mr-jobhistory-daemon.sh start historyserver --config {{ hadoop_distr_prefix }}/conf
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
